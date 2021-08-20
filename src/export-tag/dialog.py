@@ -1,11 +1,17 @@
+import os
+from concurrent.futures import Future
+
+from anki import hooks
 from aqt import mw
-from aqt.utils import openLink, showInfo
+from aqt.utils import (checkInvalidFilename, openLink, showInfo, showWarning,
+                       tooltip, tr)
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtGui import QImage
 from PyQt5.QtWidgets import *
 
 from .anki_util import all_tags
+from .export_tag import export_tag
 from .gui.forms.anki21.tag_export_dialog import Ui_Dialog
 from .gui.resources.anki21 import icons_rc  # type: ignore
 
@@ -31,13 +37,59 @@ class TagExportDialog(QDialog):
         self.dialog.setupUi(self)
 
     def _on_export_button_click(self):
+        # adapted from aqt.exporting.ExportDialog.accept
+
         if self._warn_if_invalid_tag():
             return
 
-        file_name = self._show_save_file_dialog('.apkg')
-        self._export_tag(file_name)
+        while True:
+            file = self._show_save_file_dialog('.apkg')
+            if not file:
+                return
+            if checkInvalidFilename(os.path.basename(file), dirsep=False):
+                continue
+            if os.path.commonprefix([self.mw.pm.base, file]) == self.mw.pm.base:
+                showWarning("Please choose a different export location.")
+                continue
+            break
 
-    # helper functions
+        if file:
+            # check we can write to file
+            try:
+                f = open(file, "wb")
+                f.close()
+            except OSError as e:
+                showWarning(tr.exporting_couldnt_save_file(val=str(e)))
+            else:
+                os.unlink(file)
+
+            # progress handler
+            def exported_media(cnt: int) -> None:
+                self.mw.taskman.run_on_main(
+                    lambda: self.mw.progress.update(
+                        label=tr.exporting_exported_media_file(count=cnt)
+                    )
+                )
+
+            def do_export() -> None:
+                self._export_tag(file)
+
+            def on_done(future: Future) -> None:
+                self.mw.progress.finish()
+                hooks.media_files_did_export.remove(exported_media)
+                # raises if exporter failed
+                future.result()
+                self.on_export_finished()
+
+            self.mw.progress.start()
+            hooks.media_files_did_export.append(exported_media)
+
+            self.mw.taskman.run_in_background(do_export, on_done)
+
+    def on_export_finished(self) -> None:
+        tooltip("Tag exported", period=3000)
+        QDialog.reject(self)
+
     def _warn_if_invalid_tag(self):
         if self.dialog.lineedit_tag.text() not in all_tags():
             showInfo('Please enter a valid tag')
@@ -52,9 +104,13 @@ class TagExportDialog(QDialog):
             self, "", suggested_filename, '*' + file_extension)
         return result
 
-    def _export_tag(self, file_name):
-        print(file_name)
-        print(self.dialog.lineedit_tag.text())
+    def _export_tag(self, file):
+        export_tag(
+            file, 
+            self.dialog.lineedit_tag.text(),
+            self.dialog.checkBox_include_schedul_info.isChecked(),
+            self.dialog.checkBox_include_media.isChecked(),
+        )
 
 
 class Completer(QCompleter):
