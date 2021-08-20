@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/media/terra_2/programming/anki_addons/export-tag/designer/tag_export_dialog.ui'
+# Form implementation generated from reading ui file 'designer/tag_export_dialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(480, 254)
+        Dialog.resize(506, 322)
         self.gridLayout_6 = QtWidgets.QGridLayout(Dialog)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.toolButton_instagram = QtWidgets.QToolButton(Dialog)
@@ -91,6 +91,20 @@ class Ui_Dialog(object):
         self.lineedit_tag.setGeometry(QtCore.QRect(10, 40, 421, 26))
         self.lineedit_tag.setObjectName("lineedit_tag")
         self.verticalLayout.addWidget(self.groupBox)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.toolButton_palace = QtWidgets.QToolButton(Dialog)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/CustomBackground/AnkiPalace_no_text.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toolButton_palace.setIcon(icon5)
+        self.toolButton_palace.setIconSize(QtCore.QSize(40, 40))
+        self.toolButton_palace.setObjectName("toolButton_palace")
+        self.horizontalLayout.addWidget(self.toolButton_palace)
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setWordWrap(True)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout.addWidget(self.label_2)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         self.gridLayout_6.addLayout(self.verticalLayout, 4, 0, 2, 8)
         self.toolButton_patreon.raise_()
         self.toolButton_facebook.raise_()
@@ -114,4 +128,5 @@ class Ui_Dialog(object):
         self.checkBox_include_schedul_info.setText(_translate("Dialog", "include scheduling information"))
         self.checkBox_include_media.setText(_translate("Dialog", "include media"))
         self.label.setText(_translate("Dialog", "Tag to export:"))
-import icons_rc
+        self.toolButton_palace.setText(_translate("Dialog", "..."))
+        self.label_2.setText(_translate("Dialog", "Interested in learning how to use Anki effectively? Check out AnkiPalace, a comprehensive series of lessons and video tutorials on Anki designed by the AnKing team."))

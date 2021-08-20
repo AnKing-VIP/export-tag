@@ -24,6 +24,7 @@ class TagExportDialog(QDialog):
         self.mw = mw
         self.parent = parent
         self.setupDialog()
+        self.setupLinks()
 
         self.completer = Completer(self.dialog.lineedit_tag, all_tags())
         self.dialog.lineedit_tag.setCompleter(self.completer)
@@ -106,11 +107,39 @@ class TagExportDialog(QDialog):
 
     def _export_tag(self, file):
         export_tag(
-            file, 
+            file,
             self.dialog.lineedit_tag.text(),
             self.dialog.checkBox_include_schedul_info.isChecked(),
             self.dialog.checkBox_include_media.isChecked(),
         )
+
+    def setupLinks(self):
+        f = self.dialog
+        f.toolButton_website.clicked.connect(lambda _: self.openWeb("anking"))
+        f.toolButton_youtube.clicked.connect(lambda _: self.openWeb("youtube"))
+        f.toolButton_patreon.clicked.connect(lambda _: self.openWeb("patreon"))
+        f.toolButton_palace.clicked.connect(lambda _: self.openWeb("palace"))
+        f.toolButton_instagram.clicked.connect(
+            lambda _: self.openWeb("instagram"))
+        f.toolButton_facebook.clicked.connect(
+            lambda _: self.openWeb("facebook"))
+
+    def openWeb(self, site):
+        if site == "anking":
+            openLink('https://www.ankingmed.com')
+        elif site == "youtube":
+            openLink('https://www.youtube.com/theanking')
+        elif site == "patreon":
+            openLink('https://www.patreon.com/ankingmed')
+        elif site == "instagram":
+            openLink('https://instagram.com/ankingmed')
+        elif site == "facebook":
+            openLink('https://facebook.com/ankingmed')
+        elif site == "video":
+            openLink('https://youtu.be/5XAq0KpU3Jc')
+        elif site == "palace":
+            openLink(
+                'https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course')
 
 
 class Completer(QCompleter):
@@ -140,7 +169,7 @@ def create_get_help_submenu(parent: QMenu) -> QMenu:
     menu_options = [
         (
             "Online Mastery Course",
-            'https://courses.ankipalace.com/?utm_source=anking_autocomplete_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course'
+            'https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course'
         ),
         ("Daily Q and A Support", "https://www.ankipalace.com/memberships"),
         ("1-on-1 Tutoring", "https://www.ankipalace.com/tutoring"),
