@@ -8,6 +8,6 @@
     "targets": [
         "anki21"
     ],
-    "min_anki_version":"2.1.28"
+    "min_anki_version":"2.1.28",
     "min_anki_version":"2.1.47+"
 }
