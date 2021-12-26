@@ -2,11 +2,12 @@
     "display_name": "export-tag",
     "module_name": "export-tag",
     "repo_name": "export-tag",
-    "ankiweb_id": "",
+    "ankiweb_id": "960563361",
     "author": "RisingOrange",
     "conflicts": [],
     "targets": [
         "anki21"
     ],
-    "min_anki_version":"2.1.28"
+    "min_anki_version":"2.1.28",
+    "min_anki_version":"2.1.47+"
 }
