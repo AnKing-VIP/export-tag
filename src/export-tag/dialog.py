@@ -3,8 +3,7 @@ from concurrent.futures import Future
 
 from anki import hooks
 from aqt import mw
-from aqt.utils import (checkInvalidFilename, openLink, showInfo, showWarning,
-                       tooltip, tr)
+from aqt.utils import checkInvalidFilename, openLink, showInfo, showWarning, tooltip, tr
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtGui import QImage
@@ -17,7 +16,6 @@ from .gui.resources.anki21 import icons_rc  # type: ignore
 
 
 class TagExportDialog(QDialog):
-
     def __init__(self, parent=None):
         QDialog.__init__(self, parent, Qt.Window)
         mw.setupDialogGC(self)
@@ -31,7 +29,7 @@ class TagExportDialog(QDialog):
 
         self.dialog.button_export.clicked.connect(self._on_export_button_click)
 
-        self.exec_()
+        self.exec()
 
     def setupDialog(self):
         self.dialog = Ui_Dialog()
@@ -44,7 +42,7 @@ class TagExportDialog(QDialog):
             return
 
         while True:
-            file = self._show_save_file_dialog('.apkg')
+            file = self._show_save_file_dialog(".apkg")
             if not file:
                 return
             if checkInvalidFilename(os.path.basename(file), dirsep=False):
@@ -93,16 +91,16 @@ class TagExportDialog(QDialog):
 
     def _warn_if_invalid_tag(self):
         if self.dialog.lineedit_tag.text() not in all_tags():
-            showInfo('Please enter a valid tag')
+            showInfo("Please enter a valid tag")
             return True
         return False
 
     def _show_save_file_dialog(self, file_extension):
-        last_part_of_tag = self.dialog.lineedit_tag.text().split(
-            '::')[-1]
+        last_part_of_tag = self.dialog.lineedit_tag.text().split("::")[-1]
         suggested_filename = last_part_of_tag + file_extension
         result, _ = QFileDialog.getSaveFileName(
-            self, "", suggested_filename, '*' + file_extension)
+            self, "", suggested_filename, "*" + file_extension
+        )
         return result
 
     def _export_tag(self, file):
@@ -119,31 +117,29 @@ class TagExportDialog(QDialog):
         f.toolButton_youtube.clicked.connect(lambda _: self.openWeb("youtube"))
         f.toolButton_patreon.clicked.connect(lambda _: self.openWeb("patreon"))
         f.toolButton_palace.clicked.connect(lambda _: self.openWeb("palace"))
-        f.toolButton_instagram.clicked.connect(
-            lambda _: self.openWeb("instagram"))
-        f.toolButton_facebook.clicked.connect(
-            lambda _: self.openWeb("facebook"))
+        f.toolButton_instagram.clicked.connect(lambda _: self.openWeb("instagram"))
+        f.toolButton_facebook.clicked.connect(lambda _: self.openWeb("facebook"))
 
     def openWeb(self, site):
         if site == "anking":
-            openLink('https://www.ankingmed.com')
+            openLink("https://www.ankingmed.com")
         elif site == "youtube":
-            openLink('https://www.youtube.com/theanking')
+            openLink("https://www.youtube.com/theanking")
         elif site == "patreon":
-            openLink('https://www.patreon.com/ankingmed')
+            openLink("https://www.patreon.com/ankingmed")
         elif site == "instagram":
-            openLink('https://instagram.com/ankingmed')
+            openLink("https://instagram.com/ankingmed")
         elif site == "facebook":
-            openLink('https://facebook.com/ankingmed')
+            openLink("https://facebook.com/ankingmed")
         elif site == "video":
-            openLink('https://youtu.be/5XAq0KpU3Jc')
+            openLink("https://youtu.be/5XAq0KpU3Jc")
         elif site == "palace":
             openLink(
-                'https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course')
+                "https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course"
+            )
 
 
 class Completer(QCompleter):
-
     def __init__(self, lineedit, options):
         super().__init__(options)
 
@@ -152,7 +148,7 @@ class Completer(QCompleter):
         self.setFilterMode(Qt.MatchContains)
         self.setCaseSensitivity(Qt.CaseInsensitive)
 
-        sorted_options = sorted(options, key=lambda x: str(x.count('::')) + x)
+        sorted_options = sorted(options, key=lambda x: str(x.count("::")) + x)
         self.model().setStringList(sorted_options)
 
     # show options when lineedit is clicked even if it is empty
@@ -169,7 +165,7 @@ def create_get_help_submenu(parent: QMenu) -> QMenu:
     menu_options = [
         (
             "Online Mastery Course",
-            'https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course'
+            "https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course",
         ),
         ("Daily Q and A Support", "https://www.ankipalace.com/memberships"),
         ("1-on-1 Tutoring", "https://www.ankipalace.com/tutoring"),
@@ -219,9 +215,10 @@ def get_anking_menu() -> QMenu:
     """Return AnKing menu. If it doesn't exist, create one. Make sure its submenus are up to date."""
     menu_name = "&AnKing"
     menubar = mw.form.menubar
-    for a in menubar.actions():
-        if menu_name == a.text():
-            menu = a.menu()
+    submenus = menubar.findChildren(QMenu)
+    for submenu in submenus:
+        if submenu.title() == menu_name:
+            menu = submenu
             break
     else:
         menu = menubar.addMenu(menu_name)
