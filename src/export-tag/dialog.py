@@ -17,7 +17,7 @@ from .gui.resources.anki21 import icons_rc  # type: ignore
 
 class TagExportDialog(QDialog):
     def __init__(self, parent=None):
-        QDialog.__init__(self, parent, Qt.Window)
+        QDialog.__init__(self, parent, Qt.WindowType.Window)
         mw.setupDialogGC(self)
         self.mw = mw
         self.parent = parent
@@ -145,15 +145,15 @@ class Completer(QCompleter):
 
         self.lineedit = lineedit
 
-        self.setFilterMode(Qt.MatchContains)
-        self.setCaseSensitivity(Qt.CaseInsensitive)
+        self.setFilterMode(Qt.MatchFlag.MatchContains)
+        self.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
 
         sorted_options = sorted(options, key=lambda x: str(x.count("::")) + x)
         self.model().setStringList(sorted_options)
 
     # show options when lineedit is clicked even if it is empty
     def eventFilter(self, source, event):
-        if event.type() == QEvent.MouseButtonPress:
+        if event.type() == QEvent.Type.MouseButtonPress:
             self.setCompletionPrefix(self.lineedit.text())
             self.complete()
 
