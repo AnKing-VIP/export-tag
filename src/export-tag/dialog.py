@@ -12,7 +12,6 @@ from PyQt5.QtWidgets import *
 from .anki_util import all_tags
 from .export_tag import export_tag
 from .gui.forms.anki21.tag_export_dialog import Ui_Dialog
-from .gui.resources.anki21 import icons_rc  # type: ignore
 
 
 class TagExportDialog(QDialog):
