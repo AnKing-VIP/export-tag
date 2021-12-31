@@ -3,11 +3,8 @@ from concurrent.futures import Future
 
 from anki import hooks
 from aqt import mw
+from aqt.qt import *
 from aqt.utils import checkInvalidFilename, openLink, showInfo, showWarning, tooltip, tr
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtGui import QImage
-from PyQt5.QtWidgets import *
 
 from .anki_util import all_tags
 from .export_tag import export_tag
@@ -159,18 +156,25 @@ class Completer(QCompleter):
         return super().eventFilter(source, event)
 
 
+# fmt: off
+addon_name = __name__.split('.')[0]
+
+# Increment this after modifying below options.
+SUBMENU_VER = 2
+MENU_NAME = "&AnKing"
+
+GET_HELP_MENU_NAME = "Get Anki Help"
+GET_HELP_MENU_OPTIONS = [
+    ("Online Mastery Course", f"https://courses.ankipalace.com/?utm_source={addon_name}&utm_medium=anki_add-on&utm_campaign=mastery_course"),
+    ("Daily Q and A Support", "https://www.ankipalace.com/memberships"),
+    ("1-on-1 Tutoring", "https://www.ankipalace.com/tutoring"),
+]
+# fmt: on
+
+
 def create_get_help_submenu(parent: QMenu) -> QMenu:
-    submenu_name = "Get Anki Help"
-    menu_options = [
-        (
-            "Online Mastery Course",
-            "https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course",
-        ),
-        ("Daily Q and A Support", "https://www.ankipalace.com/memberships"),
-        ("1-on-1 Tutoring", "https://www.ankipalace.com/tutoring"),
-    ]
-    submenu = QMenu(submenu_name, parent)
-    for name, url in menu_options:
+    submenu = QMenu(GET_HELP_MENU_NAME, parent)
+    for name, url in GET_HELP_MENU_OPTIONS:
         act = QAction(name, mw)
         act.triggered.connect(lambda _, u=url: openLink(u))
         submenu.addAction(act)
