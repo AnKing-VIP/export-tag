@@ -5,7 +5,7 @@ This add-on enables you to easily share tags with other Anki users. It exports a
 ![](screenshots/dialog.png)
 
 <b>Problems, Bugs, Errors, Improvements</b>
-If you find a serious bug, please submit it on <a href="https://github.com/ankipalace/anki-field-autocomplete/issues" rel="nofollow">Github</a> or email us at ankingmed@gmail.com. Please remember that we are not coders and thus may not be able to provide support.
+If you find a serious bug, please submit it on <a href="https://github.com/AnKingMed/export-tag/issues" rel="nofollow">Github</a> or email us at ankingmed@gmail.com. Please remember that we are not coders and thus may not be able to provide support.
 
 <b>Changelog</b>
 
