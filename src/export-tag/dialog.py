@@ -4,11 +4,12 @@ from concurrent.futures import Future
 from anki import hooks
 from aqt import mw
 from aqt.qt import *
-from aqt.utils import checkInvalidFilename, openLink, showInfo, showWarning, tooltip, tr
+from aqt.utils import (checkInvalidFilename, openLink, showInfo, showWarning,
+                       tooltip, tr)
 
 from .anki_util import all_tags
 from .export_tag import export_tag
-from .gui.forms.anki21.tag_export_dialog import Ui_Dialog
+from .gui.forms import tag_export_dialog
 
 
 class TagExportDialog(QDialog):
@@ -28,7 +29,7 @@ class TagExportDialog(QDialog):
         self.exec()
 
     def setupDialog(self):
-        self.dialog = Ui_Dialog()
+        self.dialog = tag_export_dialog.Ui_Dialog()
         self.dialog.setupUi(self)
 
     def _on_export_button_click(self):
