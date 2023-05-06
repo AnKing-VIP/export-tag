@@ -225,7 +225,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/icons.qrc">
-           <normaloff>:/CustomBackground/AnkiPalace_no_text.png</normaloff>:/CustomBackground/AnkiPalace_no_text.png</iconset>
+           <normaloff>:/CustomBackground/AnKingSmall.png</normaloff>:/CustomBackground/AnKingSmall.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -238,7 +238,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Interested in learning how to use Anki effectively? Check out AnkiPalace, a comprehensive series of lessons and video tutorials on Anki designed by the AnKing team.</string>
+          <string>Interested in learning how to use Anki effectively? Check out the Anki Mastery Course, a comprehensive series of lessons and video tutorials on Anki designed by the AnKing team.</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
