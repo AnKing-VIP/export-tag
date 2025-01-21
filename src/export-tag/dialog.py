@@ -113,7 +113,7 @@ class TagExportDialog(QDialog):
         f.toolButton_website.clicked.connect(lambda _: self.openWeb("anking"))
         f.toolButton_youtube.clicked.connect(lambda _: self.openWeb("youtube"))
         f.toolButton_patreon.clicked.connect(lambda _: self.openWeb("patreon"))
-        f.toolButton_palace.clicked.connect(lambda _: self.openWeb("palace"))
+        f.toolButton_masteryCourse.clicked.connect(lambda _: self.openWeb("mastery_course"))
         f.toolButton_instagram.clicked.connect(lambda _: self.openWeb("instagram"))
         f.toolButton_facebook.clicked.connect(lambda _: self.openWeb("facebook"))
 
@@ -130,9 +130,9 @@ class TagExportDialog(QDialog):
             openLink("https://facebook.com/ankingmed")
         elif site == "video":
             openLink("https://youtu.be/5XAq0KpU3Jc")
-        elif site == "palace":
+        elif site == "mastery_course":
             openLink(
-                "https://courses.ankipalace.com/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course"
+                "https://www.theanking.com/anki-mastery-course/?utm_source=anking_tag_export_add-on&utm_medium=anki_add-on&utm_campaign=mastery_course"
             )
 
 
@@ -166,9 +166,9 @@ MENU_NAME = "&AnKing"
 
 GET_HELP_MENU_NAME = "Get Anki Help"
 GET_HELP_MENU_OPTIONS = [
-    ("Online Mastery Course", f"https://courses.ankipalace.com/?utm_source={addon_name}&utm_medium=anki_add-on&utm_campaign=mastery_course"),
-    ("Daily Q and A Support", "https://www.ankipalace.com/memberships"),
-    ("1-on-1 Tutoring", "https://www.ankipalace.com/tutoring"),
+    ("Online Mastery Course", f"https://www.theanking.com/anki-mastery-course/?utm_source={addon_name}&utm_medium=anki_add-on&utm_campaign=mastery_course"),
+    ("Daily Q and A Support", "https://www.theanking.com/anking-memberships"),
+    ("1-on-1 Tutoring", "https://www.theanking.com/anking-tutoring"),
 ]
 # fmt: on
 
