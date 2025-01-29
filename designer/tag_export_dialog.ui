@@ -27,7 +27,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/icons.qrc">
-       <normaloff>:/CustomBackground/Instagram.png</normaloff>:/CustomBackground/Instagram.png</iconset>
+       <normaloff>:/ExportTag/Instagram.png</normaloff>:/ExportTag/Instagram.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -50,7 +50,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/icons.qrc">
-       <normaloff>:/CustomBackground/Facebook.png</normaloff>:/CustomBackground/Facebook.png</iconset>
+       <normaloff>:/ExportTag/Facebook.png</normaloff>:/ExportTag/Facebook.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -73,7 +73,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/icons.qrc">
-       <normaloff>:/CustomBackground/Patreon.png</normaloff>:/CustomBackground/Patreon.png</iconset>
+       <normaloff>:/ExportTag/Patreon.png</normaloff>:/ExportTag/Patreon.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -103,7 +103,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/icons.qrc">
-       <normaloff>:/CustomBackground/AnKingSmall.png</normaloff>:/CustomBackground/AnKingSmall.png</iconset>
+       <normaloff>:/ExportTag/AnKingSmall.png</normaloff>:/ExportTag/AnKingSmall.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -126,7 +126,7 @@
      </property>
      <property name="icon">
       <iconset resource="../resources/icons.qrc">
-       <normaloff>:/CustomBackground/YouTube.png</normaloff>:/CustomBackground/YouTube.png</iconset>
+       <normaloff>:/ExportTag/YouTube.png</normaloff>:/ExportTag/YouTube.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -225,7 +225,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/icons.qrc">
-           <normaloff>:/CustomBackground/AnKingSmall.png</normaloff>:/CustomBackground/AnKingSmall.png</iconset>
+           <normaloff>:/ExportTag/AnKingSmall.png</normaloff>:/ExportTag/AnKingSmall.png</iconset>
          </property>
          <property name="iconSize">
           <size>
